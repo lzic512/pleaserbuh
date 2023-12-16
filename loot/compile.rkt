@@ -69,8 +69,10 @@
                (Je empty1)
 	       (Cmp r8 1)
 	       (Je empty2)
+	       (Mov 'r12 r8)
                (compile-es (reverse es) c)
- 	       
+ 	       (Mov r8 'r12)
+
                (Mov r9 rbx)
  	       (Or r9 type-values)
 
@@ -108,7 +110,9 @@
 	  (loop  (gensym))
 	  (done2 (gensym))
 	  (done3 (gensym)))
-    (seq (compile-e e c t?)
+    (seq 
+         
+         (compile-e e c t?)
          (Push rax)
          (And rax type-values)
 	 (Cmp rax type-values)
